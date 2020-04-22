@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityStandardAssets.Characters.ThirdPerson;
 
-public class GuardAnimationController : MonoBehaviour
+public class AnimationController : MonoBehaviour
 {
     NavMeshAgent agent;
     ThirdPersonCharacter character;
