@@ -6,28 +6,28 @@ using UnityStandardAssets.Characters.ThirdPerson;
 
 public class AnimationController : MonoBehaviour
 {
-    NavMeshAgent agent;
-    ThirdPersonCharacter character;
+    NavMeshAgent _agent;
+    ThirdPersonCharacter _character;
 
     // Start is called before the first frame update
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        character = GetComponent<ThirdPersonCharacter>();
+        _agent = GetComponent<NavMeshAgent>();
+        _character = GetComponent<ThirdPersonCharacter>();
 
-        agent.updateRotation = false;
+        _agent.updateRotation = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (agent.remainingDistance > agent.stoppingDistance)
+        if (_agent.remainingDistance > _agent.stoppingDistance)
         {
-            character.Move(agent.desiredVelocity, false, false);
+            _character.Move(_agent.desiredVelocity, false, false);
         }
         else
         {
-            character.Move(Vector3.zero, false, false);
+            _character.Move(Vector3.zero, false, false);
         }
     }
 }

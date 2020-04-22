@@ -4,25 +4,27 @@ using UnityEngine;
 
 public class StyleController : MonoBehaviour
 {
-    [SerializeField] SkinnedMeshRenderer renderer;
-    [SerializeField] Material highlightMaterial;
+    [SerializeField] SkinnedMeshRenderer _renderer;
+    [SerializeField] Material _highlightMaterial;
 
     Material defaultMaterial;
 
     private void Start()
     {
-        defaultMaterial = renderer.material;
+        defaultMaterial = _renderer.material;
 
-        GetComponent<UnitCommand>().OnUnitSelected += ActivateHighlight;
+        Unit unit = GetComponent<Unit>();
+        unit.OnUnitSelected += ActivateHighlight;
+        unit.OnUnitDeselected += DeactivateHighlight;
     }
 
     void ActivateHighlight()
     {
-        renderer.material = highlightMaterial;
+        _renderer.material = _highlightMaterial;
     }
 
     void DeactivateHighlight()
     {
-        renderer.material = defaultMaterial;
+        _renderer.material = defaultMaterial;
     }
 }
