@@ -29,7 +29,7 @@ public class GuardAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (HasArrivedToWaypoint())
+        if (HasArrivedToWaypoint() && _whichWaypointNextIndex < _path.Length)
         {
             MoveToNextWaypoint();
         }
