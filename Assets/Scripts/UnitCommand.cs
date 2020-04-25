@@ -28,7 +28,6 @@ public class UnitCommand : MonoBehaviour
             if (!Physics.Raycast(ray, out hit))
                 return;
 
-            Debug.Log("xd");
             foreach(Unit unit in selctedUnits)
             {
                 unit.MoveTo(hit.point);

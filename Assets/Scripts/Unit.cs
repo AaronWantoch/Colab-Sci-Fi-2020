@@ -9,6 +9,8 @@ public class Unit : MonoBehaviour
     NavMeshAgent _agent;
     UnitCommand _unitCommand;
 
+    bool isSelected;
+
     public event Action OnUnitSelected;
     public event Action OnUnitDeselected;
 
@@ -20,14 +22,21 @@ public class Unit : MonoBehaviour
         _unitCommand = UnitCommand.instance; 
 
         OnUnitSelected += AddToSelectedList;
+        OnUnitDeselected += RemoveFromSelectedList;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && !isSelected)
         {
             OnUnitSelected();
+            isSelected = true;
+        }
+        else if (Input.GetMouseButtonDown(0) && isSelected)
+        {
+            OnUnitDeselected();
+            isSelected = false;
         }
     }
 
@@ -39,5 +48,10 @@ public class Unit : MonoBehaviour
     void AddToSelectedList()
     {
         _unitCommand.selctedUnits.Add(this);
+    }
+
+    void RemoveFromSelectedList()
+    {
+        _unitCommand.selctedUnits.Remove(this);
     }
 }
