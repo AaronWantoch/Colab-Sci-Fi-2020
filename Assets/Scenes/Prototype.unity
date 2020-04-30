@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 80887687}
   - component: {fileID: 80887684}
   - component: {fileID: 80887683}
-  - component: {fileID: 80887689}
   - component: {fileID: 80887682}
   - component: {fileID: 80887686}
   m_Layer: 0
@@ -184,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f0d7f0d00a8834a8c6b1aaf055a982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  runSpeed: 2
 --- !u!95 &80887684
 Animator:
   serializedVersion: 3
@@ -193,11 +193,11 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 80887680}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: a9747f96aa7f0b94ba6b048b68b21602, type: 3}
-  m_Controller: {fileID: 9100000, guid: 1cb22b17f3492af4e809025d5fc0e75e, type: 2}
+  m_Avatar: {fileID: 9000000, guid: c7feeab6896ae4146bd45e01549fadd1, type: 3}
+  m_Controller: {fileID: 9100000, guid: c3eaf8a98b005f445a927827a5269bc3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -269,26 +269,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &80887689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 80887680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MovingTurnSpeed: 360
-  m_StationaryTurnSpeed: 180
-  m_JumpPower: 12
-  m_GravityMultiplier: 2
-  m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 1
-  m_AnimSpeedMultiplier: 1
-  m_GroundCheckDistance: 1
 --- !u!1001 &161522486
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -463,7 +443,7 @@ Transform:
   m_Children:
   - {fileID: 238312942}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &930864569 stripped
 SkinnedMeshRenderer:
@@ -604,13 +584,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1191730700}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 80887681}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1326102264
 GameObject:

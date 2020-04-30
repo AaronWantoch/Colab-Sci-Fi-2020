@@ -8,11 +8,14 @@ using UnityStandardAssets.Characters.ThirdPerson;
 [RequireComponent(typeof(Animator))]
 public class AnimationController : MonoBehaviour
 {
+    [SerializeField] float runSpeed = 2f;
+
     NavMeshAgent _agent;
     ThirdPersonCharacter _character;
     Animator _animator;
 
     int _isWalkingHash = Animator.StringToHash("isWalking");
+    int _isRunningHash = Animator.StringToHash("isRunning");
 
     // Start is called before the first frame update
     void Start()
@@ -25,10 +28,15 @@ public class AnimationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_agent.speed > 0)
+        Debug.Log(gameObject.name + _agent.velocity.magnitude.ToString());
+        if (_agent.velocity.magnitude > Mathf.Epsilon)
             _animator.SetBool(_isWalkingHash, true);
         else
             _animator.SetBool(_isWalkingHash, false);
+        if (_agent.velocity.magnitude > runSpeed)
+            _animator.SetBool(_isRunningHash, true);
+        else
+            _animator.SetBool(_isRunningHash, false);
 
     }
 }
