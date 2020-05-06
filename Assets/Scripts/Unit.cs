@@ -9,7 +9,8 @@ public class Unit : MonoBehaviour
     NavMeshAgent _agent;
     UnitCommand _unitCommand;
 
-    bool isSelected;
+    bool _isSelected;
+    bool _selectedInThisFrame;
 
     public event Action OnUnitSelected;
     public event Action OnUnitDeselected;
@@ -28,16 +29,20 @@ public class Unit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0) && !isSelected)
-        {
-            OnUnitSelected();
-            isSelected = true;
-        }
-        else if (Input.GetMouseButtonDown(0) && isSelected)
+        if (Input.GetMouseButtonDown(0) && _isSelected && !_selectedInThisFrame)
         {
             OnUnitDeselected();
-            isSelected = false;
+            _isSelected = false;
         }
+
+        _selectedInThisFrame = false;
+    }
+
+    private void OnMouseDown()
+    {
+        OnUnitSelected();
+        _isSelected = true;
+        _selectedInThisFrame = true;
     }
 
     public void MoveTo(Vector3 where)
@@ -48,10 +53,12 @@ public class Unit : MonoBehaviour
     void AddToSelectedList()
     {
         _unitCommand.selctedUnits.Add(this);
+        _isSelected = true;
     }
 
     void RemoveFromSelectedList()
     {
         _unitCommand.selctedUnits.Remove(this);
+        _isSelected = false;
     }
 }
