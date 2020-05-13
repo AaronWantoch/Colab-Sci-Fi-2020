@@ -19,19 +19,29 @@ public class UnitCommand : MonoBehaviour
 
     public List<Unit> selctedUnits;
 
+    Vector3 startingSelectionPoint;
+    Vector3 endingSelectionPoint;
+
     private void Update()
     {
-        if(Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (!Physics.Raycast(ray, out hit))
                 return;
 
-            foreach(Unit unit in selctedUnits)
+            foreach (Unit unit in selctedUnits)
             {
                 unit.MoveTo(hit.point);
             }
         }
+        else if (Input.GetMouseButtonDown(0))
+            startingSelectionPoint = Input.mousePosition;
+        else if(Input.GetMouseButtonUp(0))
+        {
+            //Physics.BoxCast()
+        }
+
     }
 }
