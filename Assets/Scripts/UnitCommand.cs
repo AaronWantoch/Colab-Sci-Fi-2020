@@ -19,8 +19,9 @@ public class UnitCommand : MonoBehaviour
 
     public List<Unit> selctedUnits;
 
-    Vector3 startingSelectionPoint;
-    Vector3 endingSelectionPoint;
+    Vector2 _startingSelectionPoint;
+    Vector2 _endingSelectionPoint;
+    Vector2 _centerPoint;
 
     private void Update()
     {
@@ -37,10 +38,19 @@ public class UnitCommand : MonoBehaviour
             }
         }
         else if (Input.GetMouseButtonDown(0))
-            startingSelectionPoint = Input.mousePosition;
+            _startingSelectionPoint = Input.mousePosition;
         else if(Input.GetMouseButtonUp(0))
         {
-            //Physics.BoxCast()
+            _endingSelectionPoint = Input.mousePosition;
+            _centerPoint = (_startingSelectionPoint + _endingSelectionPoint) / 2;
+
+            float halfExtent = Mathf.Sqrt(
+                Mathf.Pow(_centerPoint.x - _startingSelectionPoint.x, 2)
+                + Mathf.Pow(_centerPoint.y - _startingSelectionPoint.y, 2));
+            Collider[] colliders;
+
+
+            //colliders = Physics.OverlapBox(_centerPoint,);
         }
 
     }
