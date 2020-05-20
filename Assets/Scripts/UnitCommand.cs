@@ -27,31 +27,44 @@ public class UnitCommand : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (!Physics.Raycast(ray, out hit))
-                return;
-
-            foreach (Unit unit in selctedUnits)
-            {
-                unit.MoveTo(hit.point);
-            }
+            SelectSingleUnit();
         }
-        else if (Input.GetMouseButtonDown(0))
+        BoxSelection();
+
+    }
+
+    private void SelectSingleUnit()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (!Physics.Raycast(ray, out hit))
+            return;
+
+        foreach (Unit unit in selctedUnits)
+        {
+            unit.MoveTo(hit.point);
+        }
+    }
+
+    private void BoxSelection()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
             _startingSelectionPoint = Input.mousePosition;
-        else if(Input.GetMouseButtonUp(0))
+        }
+        else if (Input.GetMouseButton(0))
+        {
+
+        }
+        else if (Input.GetMouseButtonUp(0))
         {
             _endingSelectionPoint = Input.mousePosition;
             _centerPoint = (_startingSelectionPoint + _endingSelectionPoint) / 2;
 
-            float halfExtent = Mathf.Sqrt(
-                Mathf.Pow(_centerPoint.x - _startingSelectionPoint.x, 2)
-                + Mathf.Pow(_centerPoint.y - _startingSelectionPoint.y, 2));
             Collider[] colliders;
 
 
             //colliders = Physics.OverlapBox(_centerPoint,);
         }
-
     }
 }
