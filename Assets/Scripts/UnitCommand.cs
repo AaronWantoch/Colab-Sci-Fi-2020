@@ -17,11 +17,18 @@ public class UnitCommand : MonoBehaviour
     }
     #endregion 
 
-    public List<Unit> selctedUnits;
+    [HideInInspector] public List<Unit> selctedUnits;
 
-    Vector2 _startingSelectionPoint;
-    Vector2 _endingSelectionPoint;
+    [SerializeField] private RectTransform selectionArea;
+
+    Vector2 _startPosition;
+    Vector2 _rightDownCorner;
     Vector2 _centerPoint;
+
+    private void Start()
+    {
+        selectionArea.gameObject.SetActive(false);
+    }
 
     private void Update()
     {
@@ -48,21 +55,31 @@ public class UnitCommand : MonoBehaviour
 
     private void BoxSelection()
     {
+        Vector2 currentMousePosition = Input.mousePosition;
+
         if (Input.GetMouseButtonDown(0))
         {
-            _startingSelectionPoint = Input.mousePosition;
+            selectionArea.gameObject.SetActive(true);
+
+            _startPosition = currentMousePosition;
         }
         else if (Input.GetMouseButton(0))
         {
+            Vector2 lowerLeftCorner = new Vector2(
+                Mathf.Min(_startPosition.x, currentMousePosition.x)
+                , Mathf.Min(_startPosition.y, currentMousePosition.y));
+            Vector2 upperRightCorner = new Vector2(
+                Mathf.Max(_startPosition.x, currentMousePosition.x)
+                , Mathf.Max(_startPosition.y, currentMousePosition.y));
 
+            selectionArea.position = lowerLeftCorner;
+            selectionArea.localScale = new Vector2(
+                upperRightCorner.x - lowerLeftCorner.x
+                , upperRightCorner.y - lowerLeftCorner.y);
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            _endingSelectionPoint = Input.mousePosition;
-            _centerPoint = (_startingSelectionPoint + _endingSelectionPoint) / 2;
-
-            Collider[] colliders;
-
+            selectionArea.gameObject.SetActive(false);
 
             //colliders = Physics.OverlapBox(_centerPoint,);
         }
