@@ -38,11 +38,15 @@ public class Unit : MonoBehaviour
         _selectedInThisFrame = false;
     }
 
-    private void OnMouseDown()
+    public void Select()
     {
         OnUnitSelected();
         _isSelected = true;
         _selectedInThisFrame = true;
+    }
+    private void OnMouseDown()
+    {
+        Select();
     }
 
     public void MoveTo(Vector3 where)

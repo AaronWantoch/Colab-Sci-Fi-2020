@@ -28,7 +28,6 @@ public class AnimationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(gameObject.name + _agent.velocity.magnitude.ToString());
         if (_agent.velocity.magnitude > Mathf.Epsilon)
             _animator.SetBool(_isWalkingHash, true);
         else
