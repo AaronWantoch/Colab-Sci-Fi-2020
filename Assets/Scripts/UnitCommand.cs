@@ -20,10 +20,14 @@ public class UnitCommand : MonoBehaviour
     [HideInInspector] public List<Unit> selctedUnits;
 
     [SerializeField] private RectTransform selectionArea;
+    [SerializeField] private Transform boxCast;   //the box that is being used to boxcast
 
     Vector2 _startPosition;
     Vector2 _rightDownCorner;
     Vector2 _centerPoint;
+    Vector2 _lowerLeftCorner, _uperRightCorner;
+
+    float width, height;
 
     private void Start()
     {
@@ -56,27 +60,26 @@ public class UnitCommand : MonoBehaviour
     private void BoxSelection()
     {
         Vector2 currentMousePosition = Input.mousePosition;
-        float width = 0, height = 0;
 
         if (Input.GetMouseButtonDown(0))
         {
-            selectionArea.gameObject.SetActive(true);
-
             _startPosition = currentMousePosition;
+
+            selectionArea.gameObject.SetActive(true);
         }
         else if (Input.GetMouseButton(0))
         {
-            Vector2 lowerLeftCorner = new Vector2(
+            _lowerLeftCorner = new Vector2(
                 Mathf.Min(_startPosition.x, currentMousePosition.x)
                 , Mathf.Min(_startPosition.y, currentMousePosition.y));
-            Vector2 upperRightCorner = new Vector2(
+            _uperRightCorner = new Vector2(
                 Mathf.Max(_startPosition.x, currentMousePosition.x)
                 , Mathf.Max(_startPosition.y, currentMousePosition.y));
 
-            width = upperRightCorner.x - lowerLeftCorner.x;
-            height = upperRightCorner.y - lowerLeftCorner.y;
+            width = _uperRightCorner.x - _lowerLeftCorner.x;
+            height = _uperRightCorner.y - _lowerLeftCorner.y;
 
-            selectionArea.position = lowerLeftCorner;
+            selectionArea.position = _lowerLeftCorner;
             selectionArea.localScale = new Vector2(width, height);
 
 
@@ -87,8 +90,11 @@ public class UnitCommand : MonoBehaviour
 
             selectionArea.gameObject.SetActive(false);
 
-            colliders = Physics.OverlapBox(_centerPoint, new Vector3(width / 2, height / 2, 99999999f));
+            boxCast.position = new Vector3(_lowerLeftCorner.x, _lowerLeftCorner.y,transform.position.z);
+            boxCast.localScale = new Vector3(width, height, boxCast.localScale.z);
 
+
+            /*
             foreach(Collider collider in colliders)
             {
                 Unit unit = collider.GetComponent<Unit>();
@@ -97,7 +103,7 @@ public class UnitCommand : MonoBehaviour
                     unit.Select();
 
                 Debug.Log(collider);
-            }
+            }*/
         }
     }
 }

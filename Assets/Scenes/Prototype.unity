@@ -375,7 +375,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105831113}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 261072517}
@@ -1763,6 +1763,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selctedUnits: []
   selectionArea: {fileID: 1798131955}
+  boxCast: {fileID: 261072517}
 --- !u!4 &1348080237 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4231389641501019184, guid: df08af3166d22e445b80b3d3c064ae1f,
